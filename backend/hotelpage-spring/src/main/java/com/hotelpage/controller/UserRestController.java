@@ -36,7 +36,6 @@ public class UserRestController {
 	public ResponseEntity<Map<String, Object>> insert(User user) {
 		try {
 			log.trace("UserRestController: insert");
-			System.out.println("테스트");
 			return response(Uservice.insert(user), HttpStatus.CREATED, true);
 		} catch(RuntimeException e) {
 			return response(e.getMessage(), HttpStatus.CONFLICT, false);
