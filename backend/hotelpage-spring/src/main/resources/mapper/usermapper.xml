@@ -3,14 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hotelpage.usermapper">
+	<select id="selectAll" resultType="user">
+		select *
+		from user
+	</select>
+	
+	<select id="selectById" parameterType="string" resultType="user">
+		select *
+		from user
+		where userid = #{userid}
+	</select>
+	
 	<insert id="insert" parameterType="user">
 		insert 
 		into user(userid, password, nickname, position, gender, age, birth, phone, email, registerdate, updatedate) 
 		values (#{userid}, #{password}, #{nickname}, #{position}, #{gender}, #{age}, #{birth}, #{phone}, #{email}, current_timestamp(), current_timestamp())
 	</insert>
-	
-	<select id="selectAll" resultType="user">
-		select *
-		from user
-	</select>
 </mapper>

@@ -29,6 +29,13 @@ public class UserServiceImpl implements UserService {
 		return Urepo.selectAll();
 	}
 	
+	@Override
+	public User selectById(String userid) {
+		log.trace("UserServiceImpl: selectById");
+		Lrepo.insert(new Logger("User", "selectById", null));
+		return Urepo.selectById(userid);
+	}
+	
 	@Transactional
 	public int insert(User user) {
 		log.trace("UserServiceImpl: insert");

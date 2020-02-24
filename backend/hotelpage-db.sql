@@ -58,6 +58,7 @@ insert into reservation(userid, num, startdate, enddate, registerdate, updatedat
 select * from user;
 select * from room;
 select * from reservation;
+select * from logger;
 
 drop table user;
 drop table room;

@@ -23,6 +23,11 @@ public class UserRepositoryImpl implements UserRepository {
 		return session.selectList(ns + "selectAll");
 	}
 	
+	public User selectById(String userid) {
+		log.trace("UserRepositoryImpl: selectById");
+		return session.selectOne(ns + "selectById", userid);
+	}
+	
 	public int insert(User user) {
 		log.trace("UserRepositoryImpl: insert");
 		return session.insert(ns + "insert", user);
