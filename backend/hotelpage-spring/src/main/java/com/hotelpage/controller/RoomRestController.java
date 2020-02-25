@@ -8,53 +8,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotelpage.dto.User;
-import com.hotelpage.service.UserService;
+import com.hotelpage.service.RoomService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
 @CrossOrigin("*")
-public class UserRestController {
+public class RoomRestController {
 	
 	@Autowired
-	UserService Uservice;
+	RoomService RService;
 	
-	@GetMapping("/userSelectAll")
+	@GetMapping("/roomSelectAll")
 	public ResponseEntity<Map<String, Object>> selectAll() {
 		try {
-			log.trace("UserRestController: selectAll");
-			return response(Uservice.selectAll(), HttpStatus.OK, true);
+			log.trace("RoomRestController: selectAll");
+			return response(RService.selectAll(), HttpStatus.OK, true);
 		} catch(RuntimeException e) {
 			return response(e.getMessage(), HttpStatus.CONFLICT, false);
 		}
 	}
 	
-	@GetMapping("/userSelectById")
-	public ResponseEntity<Map<String, Object>> selectById(User user) {
+	@GetMapping("/roomSelectById")
+	public ResponseEntity<Map<String, Object>> selectById(@RequestParam int id) {
 		try {
-			log.trace("UserRestController: selectById");
-			User targetUser = Uservice.selectById(user.getUserid());
-			if(targetUser.getPassword().equals(user.getPassword())) {
-				return response(targetUser, HttpStatus.OK, true);
-			} else {
-				return response(0, HttpStatus.OK, false);
-			}
-		} catch(RuntimeException e) {
-			return response(e.getMessage(), HttpStatus.CONFLICT, false);
-		}
-	}
-	
-	@PostMapping("/userInsert")
-	public ResponseEntity<Map<String, Object>> insert(@RequestBody User user) {
-		try {
-			log.trace("UserRestController: insert");
-			return response(Uservice.insert(user), HttpStatus.CREATED, true);
+			log.trace("RoomRestController: selectById");
+			return response(RService.selectById(id), HttpStatus.OK, true);
 		} catch(RuntimeException e) {
 			return response(e.getMessage(), HttpStatus.CONFLICT, false);
 		}

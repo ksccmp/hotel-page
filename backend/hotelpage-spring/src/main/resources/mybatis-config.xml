@@ -6,10 +6,12 @@
 	<typeAliases>
 		<typeAlias type="com.hotelpage.dto.User" alias="user"/>
 		<typeAlias type="com.hotelpage.dto.Logger" alias="logger"/>
+		<typeAlias type="com.hotelpage.dto.Room" alias="room"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/usermapper.xml" />
 		<mapper resource="mapper/loggermapper.xml" />
+		<mapper resource="mapper/roommapper.xml"/>
 	</mappers>
 </configuration>
