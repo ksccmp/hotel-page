@@ -31,12 +31,14 @@
           :price="room.rentprice"
           :addprice="room.rentaddprice"
           :id="room.id"
+          v-if="forms[0] == true"
         />
         <Roomdetailform
           :form="'숙박'"
           :price="room.fullprice"
           :addprice="room.fulladdprice"
           :id="room.id"
+          v-if="forms[1] == true"
         />
 
         <v-typography class="subtitle-1">
@@ -78,23 +80,13 @@ export default {
     return {
       room: {},
       dates: this.$store.state.dates,
-      datepicker: false
+      datepicker: false,
+      forms: [true, true]
     };
   },
 
   mounted() {
-    axios
-      .get("http://localhost:8080/roomSelectById", {
-        params: {
-          id: this.id
-        }
-      })
-      .then(res => {
-        this.room = res.data.data;
-      })
-      .catch(e => {
-        console.log(e);
-      });
+    this.selectById();
   },
 
   watch: {
@@ -109,7 +101,44 @@ export default {
           .format("YYYY-MM-DD");
       }
 
+      if (this.dates[1] != null) {
+        this.selectByDatesAndId();
+      }
       this.$store.dispatch(Constant.SETDATES, { dates: this.dates });
+    }
+  },
+
+  methods: {
+    selectByDatesAndId() {
+      axios
+        .get("http://localhost:8080/roomSelectByDatesAndId", {
+          params: {
+            startdate: this.dates[0],
+            enddate: this.dates[1],
+            id: this.id
+          }
+        })
+        .then(res => {
+          this.forms[1] = res.data.data == null ? false : true;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    },
+
+    selectById() {
+      axios
+        .get("http://localhost:8080/roomSelectById", {
+          params: {
+            id: this.id
+          }
+        })
+        .then(res => {
+          this.room = res.data.data;
+        })
+        .catch(e => {
+          console.log(e);
+        });
     }
   }
 };

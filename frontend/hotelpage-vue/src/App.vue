@@ -1,28 +1,28 @@
 <template>
-    <v-app>
-        <Header></Header>
-        <router-view></router-view>
-        <Footer></Footer>
-    </v-app>
+  <v-app>
+    <Header></Header>
+    <router-view></router-view>
+    <Footer></Footer>
+  </v-app>
 </template>
 
 <script>
-import Footer from './layout/footer';
-import Header from './layout/header';
-import Constant from './assets/constant';
+import Footer from "./layout/footer";
+import Header from "./layout/header";
+import Constant from "./assets/constant";
 
 export default {
-    name: 'App',
+  name: "App",
 
-    components: {
-        Header,
-        Footer,
-    },
+  components: {
+    Header,
+    Footer
+  },
 
-    mounted() {
-        this.$router.push({
-            path: Constant.GOMAIN,
-        });
-    },
+  mounted() {
+    this.$router.push({
+      path: Constant.GOMAIN
+    });
+  }
 };
 </script>

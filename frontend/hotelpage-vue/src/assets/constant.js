@@ -9,5 +9,6 @@ export default {
     },
     GOCALC: function(id, form) {
         return '/roomcalc/' + id + "/" + form;
-    }
+    },
+    GOCHECK: '/check',
 }

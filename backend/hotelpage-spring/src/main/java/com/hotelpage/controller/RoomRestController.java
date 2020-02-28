@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hotelpage.dto.Dates;
 import com.hotelpage.service.RoomService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +39,26 @@ public class RoomRestController {
 		try {
 			log.trace("RoomRestController: selectById");
 			return response(RService.selectById(id), HttpStatus.OK, true);
+		} catch(RuntimeException e) {
+			return response(e.getMessage(), HttpStatus.CONFLICT, false);
+		}
+	}
+	
+	@GetMapping("/roomSelectByDates")
+	public ResponseEntity<Map<String, Object>> selectByDates(Dates dates) {
+		try {
+			log.trace("RoomRestController: selectByDates");
+			return response(RService.selectByDates(dates), HttpStatus.OK, true);
+		} catch(RuntimeException e) {
+			return response(e.getMessage(), HttpStatus.CONFLICT, false);
+		}
+	}
+	
+	@GetMapping("/roomSelectByDatesAndId")
+	public ResponseEntity<Map<String, Object>> selectByDatesAndId(Dates dates) {
+		try {
+			log.trace("RoomRestController: selectByDatesAndId");
+			return response(RService.selectByDatesAndId(dates), HttpStatus.OK, true);
 		} catch(RuntimeException e) {
 			return response(e.getMessage(), HttpStatus.CONFLICT, false);
 		}

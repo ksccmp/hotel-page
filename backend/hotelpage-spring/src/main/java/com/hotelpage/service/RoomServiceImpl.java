@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hotelpage.dto.Dates;
 import com.hotelpage.dto.Logger;
 import com.hotelpage.dto.Room;
 import com.hotelpage.repository.LoggerRepository;
@@ -34,5 +35,19 @@ public class RoomServiceImpl implements RoomService {
 		log.trace("RoomServiceImpl: selectById");
 		Lrepo.insert(new Logger("Room", "selectById", null));
 		return Rrepo.selectById(id);
+	}
+	
+	@Override
+	public List<Room> selectByDates(Dates dates) {
+		log.trace("RoomServiceImpl: selectByDates");
+		Lrepo.insert(new Logger("Room", "selectByDates", null));
+		return Rrepo.selectByDates(dates);
+	}
+	
+	@Override
+	public Room selectByDatesAndId(Dates dates) {
+		log.trace("RoomServiceImpl: selectByDatesAndId");
+		Lrepo.insert(new Logger("Room", "selectByDatesAndId", null));
+		return Rrepo.selectByDatesAndId(dates);
 	}
 }

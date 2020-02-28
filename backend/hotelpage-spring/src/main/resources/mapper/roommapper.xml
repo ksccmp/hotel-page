@@ -13,4 +13,24 @@
 		from room
 		where id = #{id}
 	</select>
+	
+	<select id="selectByDates" parameterType="dates" resultType="room">
+		select * 
+		from room 
+		where id not in (
+			select rid 
+			from reservation 
+			where date_format(#{startdate}, '%Y-%m-%d') between startdate and DATE_ADD(enddate, INTERVAL -1 DAY) or date_format(#{enddate}, '%Y-%m-%d') between DATE_ADD(startdate, INTERVAL 1 DAY) and enddate
+		)
+	</select>
+	
+	<select id="selectByDatesAndId" parameterType="dates" resultType="room">
+		select * 
+		from room 
+		where id = #{id} and id not in (
+			select rid 
+			from reservation 
+			where date_format(#{startdate}, '%Y-%m-%d') between startdate and DATE_ADD(enddate, INTERVAL -1 DAY) or date_format(#{enddate}, '%Y-%m-%d') between DATE_ADD(startdate, INTERVAL 1 DAY) and enddate
+		)
+	</select>
 </mapper>

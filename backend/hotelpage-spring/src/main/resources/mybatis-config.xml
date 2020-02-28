@@ -7,11 +7,14 @@
 		<typeAlias type="com.hotelpage.dto.User" alias="user"/>
 		<typeAlias type="com.hotelpage.dto.Logger" alias="logger"/>
 		<typeAlias type="com.hotelpage.dto.Room" alias="room"/>
+		<typeAlias type="com.hotelpage.dto.Dates" alias="dates"/>
+		<typeAlias type="com.hotelpage.dto.Reservation" alias="reservation"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mapper/usermapper.xml" />
 		<mapper resource="mapper/loggermapper.xml" />
 		<mapper resource="mapper/roommapper.xml"/>
+		<mapper resource="mapper/reservationmapper.xml"/>
 	</mappers>
 </configuration>

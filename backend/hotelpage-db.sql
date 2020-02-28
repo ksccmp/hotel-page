@@ -33,8 +33,15 @@ create table room(
 
 create table reservation(
 	id int auto_increment primary key,
-	userid varchar(50) references user(userid),
-    num int references room(num),
+	uid varchar(50) references user(id),
+    rid int references room(id),
+    roomname varchar(50) not null,
+    name varchar(50) not null,
+    price int not null,
+    phone varchar(50) not null,
+    form enum ('대실', '숙박') not null,
+    way enum ('도보', '차량') not null,
+    person int not null,
     startdate datetime not null,
     enddate datetime not null,
     registerdate datetime not null,
@@ -56,10 +63,6 @@ alter table room convert to character set utf8;
 alter table reservation convert to character set utf8;
 alter table logger convert to character set utf8;
 
-insert into user(userid, password, nickname, position, gender, age, birth, phone, email, registerdate, updatedate) values ('abc', 'abc', 'abc', '브론즈', '남성', 50, now(), '010-3361-3633', 'naver', current_timestamp(), current_timestamp());
-insert into reservation(userid, num, startdate, enddate, registerdate, updatedate) values ('abc', 101, '2020-01-01', '2020-01-02', current_timestamp(), current_timestamp());
-insert into reservation(userid, num, startdate, enddate, registerdate, updatedate) values ('abc', 101, date_format(current_timeStamp(), '%Y-%m-%d %H:%i:%S'), '2020-01-06', current_timestamp(), current_timestamp());
-
 insert into room(id, num, name, contents, addcontents, size, standard, max, rentprice, rentaddprice, fullprice, fulladdprice) values (1, 101, "스탠다드 룸", "아늑한 분위기의 스탠다드 룸", null, 10, 4, 6, 45000, 5000, 110000, 10000);
 insert into room(id, num, name, contents, addcontents, size, standard, max, rentprice, rentaddprice, fullprice, fulladdprice) values (2, 102, "스탠다드 룸", "아늑한 분위기의 스탠다드 룸", null, 10, 4, 6, 45000, 5000, 110000, 10000);
 insert into room(id, num, name, contents, addcontents, size, standard, max, rentprice, rentaddprice, fullprice, fulladdprice) values (3, 103, "스위트 룸", "아늑하고 넓은 분위기의 스위트 룸", null, 15, 6, 8, 60000, 8000, 160000, 15000);
@@ -67,11 +70,17 @@ insert into room(id, num, name, contents, addcontents, size, standard, max, rent
 insert into room(id, num, name, contents, addcontents, size, standard, max, rentprice, rentaddprice, fullprice, fulladdprice) values (5, 202, "스탠다드 룸", "아늑한 분위기의 스탠다드 룸", null, 10, 4, 6, 45000, 5000, 110000, 10000);
 insert into room(id, num, name, contents, addcontents, size, standard, max, rentprice, rentaddprice, fullprice, fulladdprice) values (6, 203, "스위트 룸", "아늑하고 넓은 분위기의 스위트 룸", null, 15, 6, 8, 60000, 8000, 160000, 15000);
 
+select * from reservation where uid = 2;
+
 select * from user;
 select * from room;
 select * from reservation;
 select * from logger;
 
+select date_format(current_timestamp(), '%Y-%m-%d');
+
+select * from room where id = 1 and id not in (
+select rid from reservation where '2020-02-27' between startdate and DATE_ADD(enddate, INTERVAL -1 DAY) or '2020-02-28' between DATE_ADD(startdate, INTERVAL 1 DAY) and enddate);
 delete from user;
 delete from room;
 

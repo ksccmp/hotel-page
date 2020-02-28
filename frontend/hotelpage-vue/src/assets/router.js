@@ -3,6 +3,7 @@ import main from '../pages/main';
 import register from '../pages/reservation/register';
 import roomdetail from '../pages/reservation/roomdetail';
 import roomcalc from '../pages/reservation/roomcalc';
+import check from '../pages/reservation/check';
 
 const router = new VueRouter({
     mode: 'history',
@@ -28,7 +29,12 @@ const router = new VueRouter({
             path: '/roomcalc/:id/:form',
             props: true,
             component: roomcalc,
-        }
+        },
+        {
+            name: 'check',
+            path: '/check',
+            component: check,
+        },
     ]
 })
 
