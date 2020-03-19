@@ -111,11 +111,14 @@ export default {
   methods: {
     selectByDatesAndId() {
       axios
-        .get("http://localhost:8080/roomSelectByDatesAndId", {
+        .get("http://localhost:8080/room/selectByDatesAndId", {
           params: {
             startdate: this.dates[0],
             enddate: this.dates[1],
             id: this.id
+          },
+          headers: {
+            "jwt-auth-token": localStorage.token
           }
         })
         .then(res => {
@@ -128,9 +131,12 @@ export default {
 
     selectById() {
       axios
-        .get("http://localhost:8080/roomSelectById", {
+        .get("http://localhost:8080/room/selectById", {
           params: {
             id: this.id
+          },
+          headers: {
+            "jwt-auth-token": localStorage.token
           }
         })
         .then(res => {

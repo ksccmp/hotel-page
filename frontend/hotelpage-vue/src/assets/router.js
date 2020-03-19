@@ -4,6 +4,7 @@ import register from '../pages/reservation/register';
 import roomdetail from '../pages/reservation/roomdetail';
 import roomcalc from '../pages/reservation/roomcalc';
 import check from '../pages/reservation/check';
+import requestmain from '../pages/request/requestmain';
 
 const router = new VueRouter({
     mode: 'history',
@@ -35,6 +36,11 @@ const router = new VueRouter({
             path: '/check',
             component: check,
         },
+        {
+            name: 'requestmain',
+            path: '/requestmain',
+            component: requestmain,
+        }
     ]
 })
 

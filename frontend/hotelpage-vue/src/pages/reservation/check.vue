@@ -1,49 +1,56 @@
 <template>
-    <div>
-        <v-row justify="center">
-            <v-col cols="6">
-                <Checkform v-for="(reservation, index) in reservations" :key="index" :reservation="reservation" />
-            </v-col>
-        </v-row>
-    </div>
+  <div>
+    <v-row justify="center">
+      <v-col cols="6">
+        <Checkform
+          v-for="(reservation, index) in reservations"
+          :key="index"
+          :reservation="reservation"
+        />
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
-import Checkform from '../../components/reservation/checkform';
+import axios from "axios";
+import Checkform from "../../components/reservation/checkform";
 
 export default {
-    components: {
-        Checkform,
-    },
+  components: {
+    Checkform
+  },
 
-    data() {
-        return {
-            user: this.$store.state.user,
-            reservations: [],
-        };
-    },
+  data() {
+    return {
+      user: this.$store.state.user,
+      reservations: []
+    };
+  },
 
-    mounted() {
-        this.reservationSelectByUid();
-    },
+  mounted() {
+    this.reservationSelectByUid();
+  },
 
-    methods: {
-        reservationSelectByUid() {
-            axios
-                .get('http://localhost:8080/reservationSelectByUid', {
-                    params: {
-                        uid: this.user.id,
-                    },
-                })
-                .then(res => {
-                    this.reservations = res.data.data;
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
-    },
+  methods: {
+    reservationSelectByUid() {
+      axios
+        .get("http://localhost:8080/reservation/selectByUid", {
+          params: {
+            uid: this.user.id
+          },
+          headers: {
+            "jwt-auth-token": localStorage.token
+          }
+        })
+        .then(res => {
+          this.reservations = res.data.data;
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    }
+  }
 };
 </script>
 

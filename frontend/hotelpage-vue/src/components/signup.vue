@@ -66,7 +66,7 @@ export default {
   methods: {
     clickSignup() {
       axios
-        .post("http://localhost:8080/userInsert", this.user)
+        .post("http://localhost:8080/user/insert", this.user)
         .then(res => {
           console.log(res.data.data);
           this.dialog = false;

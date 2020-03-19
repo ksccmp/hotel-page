@@ -24,7 +24,7 @@ public class RoomRestController {
 	@Autowired
 	RoomService RService;
 	
-	@GetMapping("/roomSelectAll")
+	@GetMapping("/room/selectAll")
 	public ResponseEntity<Map<String, Object>> selectAll() {
 		try {
 			log.trace("RoomRestController: selectAll");
@@ -34,7 +34,7 @@ public class RoomRestController {
 		}
 	}
 	
-	@GetMapping("/roomSelectById")
+	@GetMapping("/room/selectById")
 	public ResponseEntity<Map<String, Object>> selectById(@RequestParam int id) {
 		try {
 			log.trace("RoomRestController: selectById");
@@ -44,7 +44,7 @@ public class RoomRestController {
 		}
 	}
 	
-	@GetMapping("/roomSelectByDates")
+	@GetMapping("/room/selectByDates")
 	public ResponseEntity<Map<String, Object>> selectByDates(Dates dates) {
 		try {
 			log.trace("RoomRestController: selectByDates");
@@ -54,7 +54,7 @@ public class RoomRestController {
 		}
 	}
 	
-	@GetMapping("/roomSelectByDatesAndId")
+	@GetMapping("/room/selectByDatesAndId")
 	public ResponseEntity<Map<String, Object>> selectByDatesAndId(Dates dates) {
 		try {
 			log.trace("RoomRestController: selectByDatesAndId");

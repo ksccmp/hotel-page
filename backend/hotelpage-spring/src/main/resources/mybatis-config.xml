@@ -9,6 +9,7 @@
 		<typeAlias type="com.hotelpage.dto.Room" alias="room"/>
 		<typeAlias type="com.hotelpage.dto.Dates" alias="dates"/>
 		<typeAlias type="com.hotelpage.dto.Reservation" alias="reservation"/>
+		<typeAlias type="com.hotelpage.dto.Request" alias="request"/>
 	</typeAliases>
 	
 	<mappers>
@@ -16,5 +17,6 @@
 		<mapper resource="mapper/loggermapper.xml" />
 		<mapper resource="mapper/roommapper.xml"/>
 		<mapper resource="mapper/reservationmapper.xml"/>
+		<mapper resource="mapper/requestmapper.xml"/>
 	</mappers>
 </configuration>

@@ -28,7 +28,7 @@ public class ReservationRestController {
 	@Autowired
 	ReservationServcie Rservice;
 	
-	@GetMapping("/reservationSelectByUid")
+	@GetMapping("/reservation/selectByUid")
 	public ResponseEntity<Map<String, Object>> selectByUid(@RequestParam int uid) {
 		try {
 			log.trace("ReservationRestController: selectByUid");
@@ -38,7 +38,7 @@ public class ReservationRestController {
 		}
 	}
 	
-	@PostMapping("/reservationInsert")
+	@PostMapping("/reservation/insert")
 	public ResponseEntity<Map<String, Object>> insert(@RequestBody Reservation reservation) {
 		try {
 			log.trace("ReservationRestController: insert");
@@ -50,7 +50,7 @@ public class ReservationRestController {
 		}
 	}
 	
-	@DeleteMapping("/reservationDeleteById/{id}")
+	@DeleteMapping("/reservation/deleteById/{id}")
 	public ResponseEntity<Map<String, Object>> delete(@PathVariable int id) {
 		try {
 			log.trace("ReservationRestController: delete");

@@ -11,4 +11,5 @@ export default {
         return '/roomcalc/' + id + "/" + form;
     },
     GOCHECK: '/check',
+    GOREQUESTMAIN: '/requestmain'
 }

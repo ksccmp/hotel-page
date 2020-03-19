@@ -9,7 +9,7 @@
 <script>
 import Footer from "./layout/footer";
 import Header from "./layout/header";
-import Constant from "./assets/constant";
+// import Constant from "./assets/constant";
 
 export default {
   name: "App",
@@ -20,9 +20,9 @@ export default {
   },
 
   mounted() {
-    this.$router.push({
-      path: Constant.GOMAIN
-    });
+    // this.$router.push({
+    //   path: Constant.GOMAIN
+    // });
   }
 };
 </script>

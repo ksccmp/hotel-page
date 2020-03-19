@@ -39,7 +39,7 @@ export default {
   methods: {
     login() {
       axios
-        .get("http://localhost:8080/userSelectById", {
+        .get("http://localhost:8080/user/selectById", {
           params: {
             userid: this.user.userid,
             password: this.user.password
@@ -48,6 +48,7 @@ export default {
         .then(res => {
           if (res.data.status == true) {
             this.$store.dispatch(Constant.LOGIN, { user: res.data.data });
+            localStorage.token = res.headers["jwt-auth-token"];
             this.dialog = false;
           } else {
             alert("로그인 실패");
